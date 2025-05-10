@@ -1,13 +1,11 @@
-import { Routes, Route } from 'react-router-dom'
-
 import Navlist from '../components/navigation'
-import HomePage from '../pages/index'
-import TodoList from '../pages/todoList'
+
+import '../styles/components/container.css'
 
 // Fce pro render hlavičky
 function Header() {
     return(
-        <header>
+        <header className='container flex justify-center min-h-64'>
             <Navlist />
         </header>
     )

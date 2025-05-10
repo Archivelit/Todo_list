@@ -1,12 +1,23 @@
-import Header from '../components/header'
+import React, { useEffect } from 'react'
 
-// "Rozložení" stránky s listem
+import Header from '../components/header'
+import Footer from '../components/footer'
+
+import '../styles/main.css'
+
 function TodoList(){
+
+    //pomoci hooku useEffect měnime záhlaví stránky. Do něho pošleme anonymní funkci
+    useEffect(() => {
+        document.title = 'To do list'
+    }, [])
+
+    // "Rozložení" stránky s listem 
     return (
-        <>
-                <Header/>
-            <p>kakat'</p>
-        </>
+        <div className='main'>
+			<Header />
+            <Footer />
+		</div>
     )
 }
 

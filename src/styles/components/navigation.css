@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@import '../fonts.css';
+
+nav {
+    font-family: Monsterrat-bold, Verdana, Arial;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+nav > ul > li {
+    width: fit-content;
+    padding: 5px;
+
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+        content: '';
+        position: absolute;
+
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        height: 0;
+
+        background: #000;
+        
+        transition: height .1s ease-in-out;
+    }
+
+    &:hover::after {
+        height: 3px;
+    }
+}
+
+.selected::after{
+    height: 3px;
+}

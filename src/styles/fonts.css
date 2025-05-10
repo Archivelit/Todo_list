@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+	font-family: Open-Sans-medium;
+	font-weight: 500;
+	src: url("../assets/fonts/OpenSans_SemiCondensed-Medium.ttf");
+}
+
+@font-face {
+	font-family: Monsterrat-bold;
+	font-weight: bold;
+	src: url("../assets/fonts/Montserrat-Bold.ttf");
+}

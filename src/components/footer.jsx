@@ -1,8 +1,12 @@
+import '../styles/components/container.css'
+
 // Fce pro render patičky 
 function Footer() {
-    <footer>
-
-    </footer>
+    return(
+        <footer className='container flex justify-center min-h-32'>
+            <p>Footer</p>
+        </footer>
+    )
 }
 
 export default Footer
