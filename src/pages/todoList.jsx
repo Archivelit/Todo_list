@@ -7,6 +7,7 @@ import TaskComponent from "../components/Task"
 
 import { Task } from '../classes/Task'
 import { StorageWrapper as LocalStorage } from '../classes/LocalStorage'
+import { parseToTasks }from '../scripts/parseToTasks'
 
 import '../styles/pages/todoList.css'
 import '../styles/main.css'
@@ -17,7 +18,7 @@ function TodoList(){
 
     const [tasks, setTasks] = useState(() => {
         const savedTasks = storage.get(key)
-        return savedTasks ? JSON.parse(savedTasks) : [];
+        return savedTasks ? parseToTasks(JSON.parse(savedTasks)) : [];
     })
 
     //Měnime záhlaví stránky
@@ -46,7 +47,7 @@ function TodoList(){
     function toggleTask(ind){
         const updatedTasks = [...tasks];
         updatedTasks[ind].toggle();
-        updateStoredTasks(updatedTasks)
+        updateStoredTasks(updatedTasks);
     }
     
     // "Rozložení" stránky s listem 
