@@ -5,46 +5,64 @@ import Footer from '../components/footer'
 import TaskForm from '../components/taskForm'
 import TaskComponent from "../components/Task"
 
-import { Task } from '../scripts/Task'
+import { Task } from '../classes/Task'
+import { StorageWrapper as LocalStorage } from '../classes/LocalStorage'
 
 import '../styles/pages/todoList.css'
 import '../styles/main.css'
 
-
-
 function TodoList(){
-    const [tasks, setTasks] = useState(new Array)
-    
-    //pomoci hooku useEffect měnime záhlaví stránky. Do něho pošleme anonymní funkci
+    const key = 'tasks';
+    const storage = new LocalStorage();
+
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = storage.get(key)
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    })
+
+    //Měnime záhlaví stránky
     useLayoutEffect(() => {
         document.title = 'To do list'
     }, [])
 
+    function updateStoredTasks(tasks){
+        setTasks(tasks);
+        storage.set(key, JSON.stringify(tasks));
+    }
+
     function addButtonHandler(e){
         e.preventDefault();
         let newTask = new Task(document.getElementById('title').value.trim(), document.getElementById('desc').value.trim())
-        setTasks([...tasks, newTask]);
+        const updatedTasks = [...tasks, newTask]
+        updateStoredTasks(updatedTasks)
     }
     
     function removeButtonHandler(ind){
         const updatedTasks = [...tasks];
         updatedTasks.splice(ind, 1);
-        setTasks(updatedTasks)
+        updateStoredTasks(updatedTasks)
+    }
+    
+    function toggleTask(ind){
+        const updatedTasks = [...tasks];
+        updatedTasks[ind].toggle();
+        updateStoredTasks(updatedTasks)
     }
     
     // "Rozložení" stránky s listem 
     return (
         <div className='main'>
 			<Header />
-            <main className='container min-h-screen bg-zinc-100 text-white'>
+            <main className='container min-h-fit bg-zinc-100 text-white'>
                 <TaskForm addButtonHandler={addButtonHandler}/>
-                <div className="h-fit bg-amber-600" id='task_list'>
+                <div className="h-fit" id='task_list'>
                 {tasks.map((task, index) => (
                         <TaskComponent 
                             key={task.id}
                             task={task} 
                             ind={index} 
                             removeButtonHandler={removeButtonHandler}
+                            toggleTask={toggleTask}
                         />
                 ))}
                 </div>

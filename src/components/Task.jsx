@@ -1,14 +1,14 @@
 import {CircleX } from 'lucide-react'
 
-import { Task } from '../scripts/Task'
+import { Task } from '../classes/Task'
 
-function TaskComponent({task, ind, removeButtonHandler}) {
+function TaskComponent({task, ind, removeButtonHandler, toggleTask}) {
     return (
         <div id="task" className="flex h-16 text-black">
             <div className="flex items-center justify-center px-4">
                 <input type="checkbox" 
                 checked={task.isComplete}
-                onClick="task.toggle"
+                onChange={() => toggleTask(ind)}
                 className='size-8 cursor-pointer'/>
             </div>
 
@@ -18,7 +18,8 @@ function TaskComponent({task, ind, removeButtonHandler}) {
             </div>
 
             <div className="justify-center items-center flex px-4">
-                <CircleX size={32} className='cursor-pointer' onClick={() => removeButtonHandler(ind)}/>
+                <CircleX size={32} className='cursor-pointer' 
+                onClick={() => removeButtonHandler(ind)}/>
             </div>
         </div>
     )
