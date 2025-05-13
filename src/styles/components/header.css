@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+header img{
+    height: 250px;
+    width: 400px;
+    display: none;
+    margin-top: 5px;
+}
+
+#selected > img{
+    display: flex;
+}

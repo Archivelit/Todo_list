@@ -1,20 +1,27 @@
 import { useLayoutEffect, useState } from 'react'
 
-import Header from '../components/header'
-import Footer from '../components/footer'
-import TaskForm from '../components/taskForm'
+import Header from '../components/layout/header'
+import Footer from '../components/layout/footer'
+import TaskForm from '../components/forms/taskForm'
 import TaskComponent from "../components/Task"
 
-import { Task } from '../classes/Task'
-import { StorageWrapper as LocalStorage } from '../classes/LocalStorage'
-import { parseToTasks }from '../scripts/parseToTasks'
+import { Task } from '../models/Task'
+import { StorageWrapper as LocalStorage } from '../models/LocalStorage'
+import { parseToTasks }from '../utils/parseToTasks'
+import { Filter } from '../models/Filter'
 
 import '../styles/pages/todoList.css'
 import '../styles/main.css'
+import { useEffect } from 'react'
 
 function TodoList(){
     const key = 'tasks';
     const storage = new LocalStorage();
+
+    const [filters, setFilters] = useState(() => 
+        [new Filter("completed", task => task.isComplete === true),
+        new Filter("uncompleted", task => task.isComplete === false)
+    ])
 
     const [tasks, setTasks] = useState(() => {
         const savedTasks = storage.get(key)
@@ -25,6 +32,8 @@ function TodoList(){
     useLayoutEffect(() => {
         document.title = 'To do list'
     }, [])
+
+    useEffect(() => {}, [filters])
 
     function updateStoredTasks(tasks){
         setTasks(tasks);
@@ -52,9 +61,9 @@ function TodoList(){
     
     // "Rozložení" stránky s listem 
     return (
-        <div className='main'>
-			<Header />
-            <main className='container min-h-fit bg-zinc-100 text-white'>
+        <>
+            <Header />
+            <main className='container min-h-fit'>
                 <TaskForm addButtonHandler={addButtonHandler}/>
                 <div className="h-fit" id='task_list'>
                 {tasks.map((task, index) => (
@@ -69,7 +78,7 @@ function TodoList(){
                 </div>
             </main>
             <Footer />
-		</div>
+        </>
     )
 }
 

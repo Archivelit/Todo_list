@@ -1,24 +1,22 @@
-import {CircleX } from 'lucide-react'
-
-import { Task } from '../classes/Task'
+import { CircleX } from 'lucide-react'
 
 function TaskComponent({task, ind, removeButtonHandler, toggleTask}) {
     return (
-        <div id="task" className="flex h-16 text-black">
+        <div id="task" className="flex h-16 text-[var(--text)]">
             <div className="flex items-center justify-center px-4">
                 <input type="checkbox" 
                 checked={task.isComplete}
                 onChange={() => toggleTask(ind)}
-                className='size-8 cursor-pointer'/>
+                className='cursor-pointer size-8'/>
             </div>
 
             <div className="w-full ml-1">
-                    <h1 className='text-lg mt-1'>{task.title}</h1>
+                    <h1 className='mt-1 text-lg'>{task.title}</h1>
                     <p className='text-sm'>{task.description}</p>
             </div>
 
-            <div className="justify-center items-center flex px-4">
-                <CircleX size={32} className='cursor-pointer' 
+            <div className="flex items-center justify-center px-4">
+                <CircleX size={32} className='cursor-pointer'
                 onClick={() => removeButtonHandler(ind)}/>
             </div>
         </div>

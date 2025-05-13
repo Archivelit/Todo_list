@@ -1,16 +1,29 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
-body{
+:root {
+    --primary: #000;
+    --text: #fff;
+    --secondary: #020617;
+}
+
+body {
+    background: var(--primary);
 }
 
 h1, h2,
 h3, h4,
-h5, h6{
+h5, h6 {
     font-family: Monsterrat-bold, Verdana, Arial;
     font-weight: bold;
 }
 
-div .main{
+main {
     justify-content: center;
+    background: var(--secondary);
+    color: var(--text);
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
 }

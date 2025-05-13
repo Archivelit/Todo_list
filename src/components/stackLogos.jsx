@@ -9,7 +9,7 @@ import '../styles/pages/index.css'
 
 function StackLogos() {
     return(
-        <ul id='stack' className='lg:flex grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 my-10 sm:my-20  justify-self-center'>
+        <ul id='stack' className='lg:flex grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 my-10 sm:my-20 justify-self-center'>
             <li>
                 <a href='https://html.spec.whatwg.org/'
                 className='focus:rounded-xl'
