@@ -1,70 +1,40 @@
-import { useLayoutEffect, useState, useRef } from 'react'
+import { TasksContext } from '../context/TasksContext'
+
+import { useLayoutEffect, useContext } from 'react'
 
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
 import TaskForm from '../components/forms/taskForm'
 import TaskComponent from "../components/Task"
 
-import { Task } from '../models/Task'
-import { StorageWrapper as LocalStorage } from '../models/LocalStorage'
-import { parseToTasks }from '../utils/parseToTasks'
-import { Filter } from '../models/Filter'
 
 import '../styles/pages/todoList.css'
 import '../styles/main.css'
-import { useEffect } from 'react'
 
 function TodoList(){
-    const titleInput = useRef(null);
-    const descriptionInput = useRef(null);
+    const { tasks } = useContext(TasksContext);
 
-    const key = 'tasks';
-    const storage = new LocalStorage();
+    console.log(tasks);
 
-    const [tasks, setTasks] = useState(() => {
-        const savedTasks = storage.get(key)
-        return savedTasks ? parseToTasks(savedTasks) : [];
-    })
-
-    //Měnime záhlaví stránky
     useLayoutEffect(() => {
-        document.title = 'To do list'
-    }, [])
-
-    useEffect(() => storage.set(key, tasks), [tasks])
-
-    function addButtonHandler(e){
-        e.preventDefault();
-        let newTask = new Task(titleInput.current.value.trim(), descriptionInput.current.value.trim())
-        setTasks([...tasks, newTask])
-    }
-    
-    function removeButtonHandler(ind){
-        const updatedTasks = [...tasks];
-        updatedTasks.splice(ind, 1);
-        setTasks(updatedTasks)
-    }
-    
-    function toggleTask(ind){
-        const updatedTasks = [...tasks];
-        updatedTasks[ind].toggle();
-        setTasks(updatedTasks)
-    }
+        document.title = 'To do list';
+    }, []);
     
     // "Rozložení" stránky s listem 
     return (
         <>
             <Header />
             <main className='container min-h-fit'>
-                <TaskForm addButtonHandler={addButtonHandler} title={titleInput} description={descriptionInput}/>
+                <TaskForm />
                 <div className="h-fit" id='task_list'>
-                {tasks.map((task, index) => (
+                {tasks.length < 1 ? 
+                <h1 className='text-xl pb-2 flex justify-center'>Zatím nejsou žadné zadání</h1> 
+                    : 
+                tasks.map((task, index) => (
                         <TaskComponent 
                             key={task.id}
                             task={task} 
-                            ind={index} 
-                            removeButtonHandler={removeButtonHandler}
-                            toggleTask={toggleTask}
+                            ind={index}
                         />
                 ))}
                 </div>

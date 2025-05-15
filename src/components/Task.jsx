@@ -1,8 +1,14 @@
+import { TasksContext } from '../context/TasksContext';
+
+import { useContext } from 'react';
+
 import { CircleX } from 'lucide-react'
 
-function TaskComponent({task, ind, removeButtonHandler, toggleTask}) {
+function TaskComponent({task, ind}) {
+    const { toggleTask, removeTask } = useContext(TasksContext)
+
     return (
-        <div id="task" className="flex h-fit max-w-screen py-2 text-[var(--text)]">
+        <div className="flex h-fit max-w-screen py-2 text-[var(--text)]">
             <div className="flex items-center justify-center px-4">
                 <input type="checkbox" 
                 checked={task.isComplete}
@@ -17,7 +23,7 @@ function TaskComponent({task, ind, removeButtonHandler, toggleTask}) {
 
             <div className="flex items-center justify-center px-4">
                 <CircleX size={28} className='cursor-pointer'
-                onClick={() => removeButtonHandler(ind)}/>
+                onClick={() => removeTask(ind)}/>
             </div>
         </div>
     )

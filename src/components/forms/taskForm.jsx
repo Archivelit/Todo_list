@@ -1,9 +1,16 @@
+import { TasksContext } from '../../context/TasksContext'
+
+import { useState, useEffect, useRef, useContext } from 'react'
+
 import { NotebookPen, Funnel, FunnelX } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
 
 import Filter from '../filter'
 
-function TaskForm({addButtonHandler, title, description}) {
+function TaskForm() {
+    const { addTask } = useContext(TasksContext)
+    
+    const titleInput = useRef(null);
+    const descriptionInput = useRef(null);
     const filters = useRef(null)
     
     const[filtersDisplay, setFiltersDisplay] = useState('none')
@@ -19,7 +26,10 @@ function TaskForm({addButtonHandler, title, description}) {
     return(
         <form className='items-center md:text-lg sm:text-md text-[14px] inline lg:flex' id='task_form'>
             <div className='flex mb-8 min-h-fit md:max-h-20'>
-                <button id='add_task' onClick={addButtonHandler}
+                <button id='add_task' onClick={e => {
+                        e.preventDefault();
+                        addTask(titleInput.current.value, descriptionInput.current.value)
+                    }}
                 className='flex items-center sm:p-4 px-2 py-4 sm:mx-4 mx-2 mt-4 duration-200 border-2 rounded-lg cursor-pointer h-fit w-fit hover:border-sky-500 active:scale-95'
                 type="button">
                     <NotebookPen />
@@ -49,10 +59,10 @@ function TaskForm({addButtonHandler, title, description}) {
             </div>
             <div className='w-64 mb-4 ml-4 sm:w-1/2'>
                 <div>
-                    <input type="text" ref={title} placeholder='Název zadání' maxLength={50}/>    
+                    <input type="text" ref={titleInput} placeholder='Název zadání' maxLength={50}/>    
                 </div>
                 <div className='mt-4'>
-                    <input type="text" ref={description} 
+                    <input type="text" ref={descriptionInput} 
                     placeholder='Popis' maxLength={150} 
                     className='w-full'/>
                 </div>
