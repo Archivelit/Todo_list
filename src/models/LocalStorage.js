@@ -9,7 +9,7 @@ export class StorageWrapper{
 
     get(key) {
         try {
-            return this.storage.getItem(key);
+            return JSON.parse(this.storage.getItem(key));
         } catch (error){
             console.log(error)
         }
@@ -17,7 +17,7 @@ export class StorageWrapper{
 
     set(key, value) {
         try {
-            localStorage.setItem(key, value);
+            localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
             console.error(error)
         }

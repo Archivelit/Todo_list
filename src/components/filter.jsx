@@ -1,5 +1,3 @@
-import { Children } from "react"
-
 function Filter({ title, id, clickHandler }) {
     return(
         <div className="flex items-center mt-0.5 filter">

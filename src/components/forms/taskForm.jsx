@@ -1,9 +1,11 @@
 import { NotebookPen, Funnel, FunnelX } from 'lucide-react'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import Filter from '../filter'
 
-function TaskForm({addButtonHandler}) {
+function TaskForm({addButtonHandler, title, description}) {
+    const filters = useRef(null)
+    
     const[filtersDisplay, setFiltersDisplay] = useState('none')
 
     function changeDisplay(){
@@ -11,34 +13,34 @@ function TaskForm({addButtonHandler}) {
     }
 
     useEffect(() => {
-        document.getElementById('filters').style.display = filtersDisplay
+        filters.current.style.display = filtersDisplay
     }, [filtersDisplay])
 
     return(
-        <form className='items-center inline lg:flex' id='task_form'>
+        <form className='items-center md:text-lg sm:text-md text-[14px] inline lg:flex' id='task_form'>
             <div className='flex mb-8 min-h-fit md:max-h-20'>
                 <button id='add_task' onClick={addButtonHandler}
-                className='flex items-center p-4 mx-4 mt-4 duration-200 border-2 rounded-lg cursor-pointer h-fit w-fit hover:border-sky-500 active:text-base active:scale-95'
+                className='flex items-center sm:p-4 px-2 py-4 sm:mx-4 mx-2 mt-4 duration-200 border-2 rounded-lg cursor-pointer h-fit w-fit hover:border-sky-500 active:scale-95'
                 type="button">
                     <NotebookPen />
                     <p className='ml-2'>Přidat zadání</p>
                 </button>
-                <div className='relative'>
+                <div className='relative min-h-fit'>
                     <button id='filter' onClick={changeDisplay}
-                    className='flex items-center p-4 mx-4 mt-4 duration-200 border-2 rounded-lg cursor-pointer h-fit w-fit hover:border-sky-500 active:text-base active:scale-95'
+                    className='flex items-center sm:p-4 px-2 py-4 sm:mx-4 mx-2 mt-4 duration-200 border-2 rounded-lg cursor-pointer h-fit w-fit hover:border-sky-500 active:scale-95'
                     type="button">
                         <Funnel />
                         <p className='ml-2'>Filtry</p>
                     </button>
-                    <div id='filters' className='bg-[var(--text)] mt-2 rounded-lg text-[var(--primary)] h-28 pt-0.5 px-1'>
+                    <div ref={filters} className='bg-[var(--text)] p-2 min-h-fit mt-2 rounded-lg text-[var(--primary)]'>
                         <button id='clear_filters' onClick={() => {
                             document.querySelectorAll('.filter input[type="checkbox"]')
                             .forEach(filter => filter.checked = false)
                         }}
-                        className='flex items-center p-2 mx-4 mt-2 duration-200 border-2 rounded-lg cursor-pointer w-fit hover:border-sky-500 active:text-base active:scale-95'
+                        className='flex items-center text-sm px-2 py-2 duration-200 border-2 rounded-lg cursor-pointer w-fit hover:border-sky-500 active:scale-95'
                         type="button">
                             <FunnelX />
-                            <p>Odebrat filtry</p>
+                            <p>Vypnout filtry</p>
                         </button>
                         <Filter title={"Splněné"} id={"completed"}/>
                         <Filter title={"Nesplněné"} id={"uncompleted"}/>
@@ -47,10 +49,10 @@ function TaskForm({addButtonHandler}) {
             </div>
             <div className='w-64 mb-4 ml-4 sm:w-1/2'>
                 <div>
-                    <input type="text" id='title' placeholder='Název zadání' maxLength={50}/>    
+                    <input type="text" ref={title} placeholder='Název zadání' maxLength={50}/>    
                 </div>
                 <div className='mt-4'>
-                    <input type="text" id='desc' 
+                    <input type="text" ref={description} 
                     placeholder='Popis' maxLength={150} 
                     className='w-full'/>
                 </div>

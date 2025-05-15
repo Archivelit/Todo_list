@@ -25,7 +25,7 @@ function ThemeSwitchChekbox() {
         <>
             <input type="checkbox" id="theme_switcher" 
             checked={lightTheme} onChange={handleChekbox}
-            className="fixed bottom-10 right-10 size-16 md:size-12 sm:size-10 sm:bottom-0 sm:top-10"/>
+            className="fixed bottom-8 right-8 size-12 sm:size-10 sm:bottom-0 sm:top-10"/>
         </>
     )
 }

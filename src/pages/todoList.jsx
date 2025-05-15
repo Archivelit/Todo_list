@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState, useRef } from 'react'
 
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
@@ -15,17 +15,15 @@ import '../styles/main.css'
 import { useEffect } from 'react'
 
 function TodoList(){
+    const titleInput = useRef(null);
+    const descriptionInput = useRef(null);
+
     const key = 'tasks';
     const storage = new LocalStorage();
 
-    const [filters, setFilters] = useState(() => 
-        [new Filter("completed", task => task.isComplete === true),
-        new Filter("uncompleted", task => task.isComplete === false)
-    ])
-
     const [tasks, setTasks] = useState(() => {
         const savedTasks = storage.get(key)
-        return savedTasks ? parseToTasks(JSON.parse(savedTasks)) : [];
+        return savedTasks ? parseToTasks(savedTasks) : [];
     })
 
     //Měnime záhlaví stránky
@@ -33,30 +31,24 @@ function TodoList(){
         document.title = 'To do list'
     }, [])
 
-    useEffect(() => {}, [filters])
-
-    function updateStoredTasks(tasks){
-        setTasks(tasks);
-        storage.set(key, JSON.stringify(tasks));
-    }
+    useEffect(() => storage.set(key, tasks), [tasks])
 
     function addButtonHandler(e){
         e.preventDefault();
-        let newTask = new Task(document.getElementById('title').value.trim(), document.getElementById('desc').value.trim())
-        const updatedTasks = [...tasks, newTask]
-        updateStoredTasks(updatedTasks)
+        let newTask = new Task(titleInput.current.value.trim(), descriptionInput.current.value.trim())
+        setTasks([...tasks, newTask])
     }
     
     function removeButtonHandler(ind){
         const updatedTasks = [...tasks];
         updatedTasks.splice(ind, 1);
-        updateStoredTasks(updatedTasks)
+        setTasks(updatedTasks)
     }
     
     function toggleTask(ind){
         const updatedTasks = [...tasks];
         updatedTasks[ind].toggle();
-        updateStoredTasks(updatedTasks);
+        setTasks(updatedTasks)
     }
     
     // "Rozložení" stránky s listem 
@@ -64,7 +56,7 @@ function TodoList(){
         <>
             <Header />
             <main className='container min-h-fit'>
-                <TaskForm addButtonHandler={addButtonHandler}/>
+                <TaskForm addButtonHandler={addButtonHandler} title={titleInput} description={descriptionInput}/>
                 <div className="h-fit" id='task_list'>
                 {tasks.map((task, index) => (
                         <TaskComponent 
