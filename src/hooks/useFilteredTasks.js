@@ -7,7 +7,6 @@ function useFilteredTasks(tasks, enabledFilters){
     
     useEffect(() => {
             setFilteredTasks(filterTasks(tasks, enabledFilters));
-            console.log({enabledFilters})
     }, [tasks, enabledFilters])
 
     return filteredTasks

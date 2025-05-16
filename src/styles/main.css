@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+/*comment*/
+
 :root {
     --primary: #000;
     --text: #fff;
