@@ -7,14 +7,14 @@ import { parseToTasks } from "../utils/parseToTasks";
 
 export function useTasks() {
     const key = 'tasks';
-    const storage = new LocalStorage();
+    const STORAGE = new LocalStorage();
 
     const [tasks, setTasks] = useState(() => {
-            const savedTasks = storage.get(key);
+            const savedTasks = STORAGE.get(key);
             return savedTasks ? parseToTasks(savedTasks) : [];
         })
     
-    useEffect(() => storage.set(key, tasks), [tasks])
+    useEffect(() => STORAGE.set(key, tasks), [tasks])
     
     return {
         tasks,
@@ -29,7 +29,7 @@ export function useTasks() {
             setTasks(updatedTasks);
         },
 
-        toggleTask(taskIndex){
+        toggleTask(taskIndex) {
             const updatedTasks = [...tasks];
             updatedTasks[taskIndex].toggle();
             setTasks(updatedTasks);

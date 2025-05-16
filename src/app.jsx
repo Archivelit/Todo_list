@@ -1,16 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { TasksContext } from './context/TasksContext';
-
 import HomePage from './pages/index'
 import TodoList from './pages/todoList'
 import ThemeSwitchChekbox from './components/themeSwitchButton'
-
-import { useTasks } from './hooks/useTasks';
+import TodoProviders from './components/providers/todoProviders'
 
 function App() {
-	const taskStore = useTasks();
-
 	return (
     	<>
 		
@@ -18,9 +13,9 @@ function App() {
     		<Routes>
 				<Route path="*" element={<HomePage />} /> {/*když adresa je "default", tak zobrazí HomePage*/}
         		<Route path="/todo" element={
-					<TasksContext.Provider value={taskStore}>
+					<TodoProviders>
 						<TodoList />
-					</TasksContext.Provider>
+					</TodoProviders>
 				} />
     		</Routes>
 		</>

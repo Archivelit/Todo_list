@@ -1,6 +1,6 @@
 export class Filter {
-    constructor(name, predicate) {
-        this.name = name;
+    constructor(title, predicate) {
+        this.title = title;
         this.predicate = predicate;
         this.isEnabled = false;
     }

@@ -1,13 +1,22 @@
-import { useRef } from "react"
+import { FiltersContext } from "../context/FiltersContext"
 
-function Filter({ title, id, clickHandler }) {
-    const checkbox = useRef(null) 
+import { useContext } from "react"
+
+function Filter({ title, ind }) {
+    const { filters, updateFilterStatus} = useContext(FiltersContext);
+
     return(
-        <div className="flex items-center mt-0.5 filter">
-            <input type="checkbox" className="filter" ref={checkbox}id={id} onChange={clickHandler}/>
-            <p className="ml-2" onClick={() => 
-                checkbox.current.checked = !checkbox.current.checked
-            }>
+        <div 
+            className="flex items-center mt-0.5 filter cursor-pointer" 
+            onClick={() => updateFilterStatus(ind)}
+        >
+            <input 
+            type="checkbox" 
+            className="filter" 
+            onChange={() => {}}
+            checked={filters[ind].isEnabled}
+            />
+            <p className="ml-2">
                 {title}
             </p>
         </div>

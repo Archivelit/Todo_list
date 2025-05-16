@@ -1,6 +1,8 @@
 import { TasksContext } from '../../context/TasksContext'
+import { FiltersContext } from '../../context/FiltersContext'
 
 import { useState, useEffect, useRef, useContext } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import { NotebookPen, Funnel, FunnelX } from 'lucide-react'
 
@@ -8,10 +10,11 @@ import Filter from '../filter'
 
 function TaskForm() {
     const { addTask } = useContext(TasksContext)
-    
+    const { filters, clearFilters } = useContext(FiltersContext)
+
     const titleInput = useRef(null);
     const descriptionInput = useRef(null);
-    const filters = useRef(null)
+    const filtersContainer = useRef(null)
     
     const[filtersDisplay, setFiltersDisplay] = useState('none')
 
@@ -20,7 +23,7 @@ function TaskForm() {
     }
 
     useEffect(() => {
-        filters.current.style.display = filtersDisplay
+        filtersContainer.current.style.display = filtersDisplay
     }, [filtersDisplay])
 
     return(
@@ -42,22 +45,22 @@ function TaskForm() {
                         <Funnel />
                         <p className='ml-2'>Filtry</p>
                     </button>
-                    <div ref={filters} className='bg-[var(--text)] p-2 min-h-fit mt-2 rounded-lg text-[var(--primary)]'>
-                        <button id='clear_filters' onClick={() => {
-                            document.querySelectorAll('.filter input[type="checkbox"]')
-                            .forEach(filter => filter.checked = false)
-                        }}
+                    <div ref={filtersContainer} className='bg-[var(--text)] p-2 min-h-fit mt-2 rounded-lg text-[var(--primary)]'>
+                        <button id='clear_filters' onClick={clearFilters}
                         className='flex items-center text-sm px-2 py-2 duration-200 border-2 rounded-lg cursor-pointer w-fit hover:border-sky-500 active:scale-95'
                         type="button">
                             <FunnelX />
                             <p>Vypnout filtry</p>
                         </button>
-                        <Filter title={"Splněné"} id={"completed"}/>
-                        <Filter title={"Nesplněné"} id={"uncompleted"}/>
+                        {
+                            filters.map((filter, ind) => 
+                                <Filter key={uuidv4()} title={filter.title} id={filter.id} ind={ind}/>
+                            )
+                        }
                     </div>
                 </div>
             </div>
-            <div className='w-64 mb-4 ml-4 sm:w-1/2'>
+            <div className='w-64 mb-4 ml-4 sm:w-1/2 mt-4'>
                 <div>
                     <input type="text" ref={titleInput} placeholder='Název zadání' maxLength={50}/>    
                 </div>

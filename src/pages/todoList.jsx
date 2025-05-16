@@ -1,4 +1,5 @@
 import { TasksContext } from '../context/TasksContext'
+import { FiltersContext } from '../context/FiltersContext'
 
 import { useLayoutEffect, useContext } from 'react'
 
@@ -7,14 +8,15 @@ import Footer from '../components/layout/footer'
 import TaskForm from '../components/forms/taskForm'
 import TaskComponent from "../components/Task"
 
-
 import '../styles/pages/todoList.css'
 import '../styles/main.css'
+import useFilteredTasks from '../hooks/useFilteredTasks'
 
-function TodoList(){
+function TodoList() {
     const { tasks } = useContext(TasksContext);
+    const { enabledFilters } = useContext(FiltersContext);
 
-    console.log(tasks);
+    const filteredTasks = useFilteredTasks(tasks, enabledFilters)
 
     useLayoutEffect(() => {
         document.title = 'To do list';
@@ -27,10 +29,10 @@ function TodoList(){
             <main className='container min-h-fit'>
                 <TaskForm />
                 <div className="h-fit" id='task_list'>
-                {tasks.length < 1 ? 
+                {filteredTasks.length < 1 ? 
                 <h1 className='text-xl pb-2 flex justify-center'>Zatím nejsou žadné zadání</h1> 
                     : 
-                tasks.map((task, index) => (
+                filteredTasks.map((task, index) => (
                         <TaskComponent 
                             key={task.id}
                             task={task} 
