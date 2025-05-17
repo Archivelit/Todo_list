@@ -3,11 +3,11 @@
 @font-face {
 	font-family: Open-Sans-medium;
 	font-weight: 500;
-	src: url("../assets/fonts/OpenSans_SemiCondensed-Medium.ttf");
+	src: url("./assets/fonts/OpenSans_SemiCondensed-Medium.ttf");
 }
 
 @font-face {
 	font-family: Monsterrat-bold;
-	font-weight: bold;
-	src: url("../assets/fonts/Montserrat-Bold.ttf");
+	font-weight: 700;
+	src: url("./assets/fonts/Montserrat-Bold.ttf");
 }

@@ -4,9 +4,11 @@ h2{
     font-size: var(--text-2xl);
     margin: 8px 0;
 }
+
 div > ul > li{
     font-size: var(--text-xl);
 }
+
 li > p{
     font-size: var(--text-sm);
     margin-left: 20px;
@@ -23,6 +25,66 @@ a > img{
     -o-transition: filter .2s;
     transition: filter .2s;
     transition: filter .2s, -webkit-filter .2s;
+}
+
+#logos {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+#logos > li {
+    margin: 10px 10px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+@media (max-width: 519px) {
+    #logos > li {
+        margin: 40px 0;
+        width: 80%;
+    }
+}
+
+@media (min-width: 520px) and (max-width: 767px) {
+    #logos > li {
+        margin: 20px 10px;
+        width: 40%;
+    }
+
+    #logos > li:nth-child(2n) {
+        margin: 20px 0;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+}
+
+@media (min-width: 768px)  and (max-width: 1023px){
+    #logos > li {
+        margin: 15px 10px;
+        width: 30%;
+    }
+    
+    #logos > li:nth-child(3n) {
+        margin: 15px 0;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+}
+
+@media (min-width: 1024px) {
+    #logos {
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    }
 }
 
 #html:hover{
@@ -53,10 +115,4 @@ a > img{
 #tailwind:hover{
     -webkit-filter: drop-shadow(0 0 1em rgb(20, 184, 166));
             filter: drop-shadow(0 0 1em rgb(20, 184, 166))
-}
-
-@media screen and (width < 40rem) {
-    #stack > li {
-        margin: 15px 0;
-    }
 }

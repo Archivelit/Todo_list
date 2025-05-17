@@ -5,17 +5,17 @@ import vite from '../assets/images/vite_logo.svg';
 import react from '../assets/images/react_logo.svg';
 import tailwind from '../assets/images/tailwind_logo.svg';
 
-import '../styles/pages/index.css';
+import '../styles/pages/homepage.css';
 
 function StackLogos() {
     return(
-        <ul id='stack' className='lg:flex grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 my-10 sm:my-20 justify-self-center'>
+        <ul id='logos' className='my-10 sm:my-20'>
             <li>
                 <a href='https://html.spec.whatwg.org/'
                 className='focus:rounded-xl'
                 alt='html logo' target='_blank'
                 tabIndex={-1}>
-                    <img src={html} id='html' className=''/>
+                    <img id='html' src={html} />
                 </a>
             </li>
             <li>

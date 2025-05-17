@@ -6,12 +6,13 @@ import Navlist from '../navigation';
 import '../../styles/components/container.css';
 import '../../styles/components/header.css';
 
-// import ToDoList from '../../assets/images/ToDoList.jpg'
-// import VosASpse from '../../assets/images/VosASpse.jpg'
-// import ToDoList2 from '../../assets/images/ToDoList2.jpg'
+// import ToDoList from '/assets/images/ToDoList.jpg'
+// import VosASpse from '/assets/images/VosASpse.jpg'
+// import ToDoList2 from '/assets/images/ToDoList2.jpg'
 
 function Header() {
     // const images = [ToDoList, VosASpse, ToDoList2]
+
     // const [selectedIndex, setSelectedIndex] = useState(0);
 
     // useEffect(() => {
@@ -20,19 +21,19 @@ function Header() {
     //     }, 5000);
 
     //     return () => clearInterval(interval);
-    //  }, [selectedIndex])
+    // }, [selectedIndex])
 
     return(
-        <header className='container flex justify-center min-h-12 max-h-64'>
+        <header className='container flex justify-center pb-5 min-h-14 h-fit'>
             <Navlist />
-            {/* <ul id='slideshow' className='max-h-32'>
+            {/* <ul id='slideshow' className='h-fit'>
                 {images.map((path, index) => (
                     <li key={uuidv4()} 
                     id={index === selectedIndex ? 'selected' : undefined}>
                         <img src={path} alt='slide'/>
                     </li>
                 ))}
-            </ul>  */}
+            </ul>   */}
         </header>
     )
 }

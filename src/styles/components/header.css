@@ -10,5 +10,5 @@ header img{
 #selected > img{
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: flex; 
 }

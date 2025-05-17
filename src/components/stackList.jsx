@@ -1,4 +1,4 @@
-import "../styles/pages/index.css";
+import "../styles/pages/homepage.css";
 
 function StackList() {
     return (

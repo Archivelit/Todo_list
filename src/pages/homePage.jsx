@@ -6,7 +6,7 @@ import StackLogos from '../components/stackLogos'
 import Footer from '../components/layout/footer'
 
 import '../styles/main.css'
-import '../styles/pages/index.css'
+import '../styles/pages/homepage.css'
 import '../styles/components/container.css'
 
 function formatDate(date) {
