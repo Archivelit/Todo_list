@@ -1,6 +1,6 @@
-import { FiltersContext } from "../context/FiltersContext"
+import { FiltersContext } from "../context/FiltersContext";
 
-import { useContext } from "react"
+import { useContext } from "react";
 
 function Filter({ title, ind }) {
     const { filters, updateFilterStatus} = useContext(FiltersContext);

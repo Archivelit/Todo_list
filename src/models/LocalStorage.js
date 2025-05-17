@@ -1,7 +1,7 @@
-export class StorageWrapper{
-    constructor(){
+export class StorageWrapper {
+    constructor() {
         try {
-            this.storage = window.localStorage
+            this.storage = window.localStorage;
         } catch(error){
             console.error(error);
         }
@@ -11,7 +11,7 @@ export class StorageWrapper{
         try {
             return JSON.parse(this.storage.getItem(key));
         } catch (error){
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -19,7 +19,7 @@ export class StorageWrapper{
         try {
             localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 

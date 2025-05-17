@@ -1,11 +1,11 @@
-import html from '../assets/images/html_logo.svg'
-import css from '../assets/images/css_logo.svg'
-import js from '../assets/images/js_logo.svg'
-import vite from '../assets/images/vite_logo.svg'
-import react from '../assets/images/react_logo.svg'
-import tailwind from '../assets/images/tailwind_logo.svg'
+import html from '../assets/images/html_logo.svg';
+import css from '../assets/images/css_logo.svg';
+import js from '../assets/images/js_logo.svg';
+import vite from '../assets/images/vite_logo.svg';
+import react from '../assets/images/react_logo.svg';
+import tailwind from '../assets/images/tailwind_logo.svg';
 
-import '../styles/pages/index.css'
+import '../styles/pages/index.css';
 
 function StackLogos() {
     return(

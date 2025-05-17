@@ -6,6 +6,18 @@ form > div > div >  input {
     padding-right: 4px;
     padding-left: 4px;
     padding: 2px 4px;
+    &::-webkit-input-placeholder{
+        color: var(--color-zinc-400);
+    }
+    &::-moz-placeholder{
+        color: var(--color-zinc-400);
+    }
+    &:-ms-input-placeholder{
+        color: var(--color-zinc-400);
+    }
+    &::-ms-input-placeholder{
+        color: var(--color-zinc-400);
+    }
     &::placeholder{
         color: var(--color-zinc-400);
     }

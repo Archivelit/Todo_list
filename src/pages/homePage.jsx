@@ -21,7 +21,7 @@ function HomePage(){
 
 	//pomoci hooku useLayoutEffect měnime záhlaví stránky. Do něho pošleme anonymní funkci a pole
 	useLayoutEffect(() => {
-		document.title = 'O projektu'
+		document.title = 'O projektu';
 	}, [])
 
 	useEffect(() =>{
@@ -32,7 +32,7 @@ function HomePage(){
 		}, []
 	)
 
-	const [date, setDate] = useState(getTodaysDate)
+	const [date, setDate] = useState(getTodaysDate);
 
 	// "Rozložení" úvodní stránky
 	return (

@@ -14,7 +14,7 @@ export function useTasks() {
             return savedTasks ? parseToTasks(savedTasks) : [];
         })
     
-    useEffect(() => STORAGE.set(key, tasks), [tasks])
+    useEffect(() => STORAGE.set(key, tasks), [tasks]);
     
     return {
         tasks,
@@ -35,8 +35,8 @@ export function useTasks() {
             setTasks(updatedTasks);
         },
 
-        getTasks() {
-            return tasks;
+        getTaskIndexById(id) {
+            return tasks.findIndex(task => task.id === id);
         }
     }
 }

@@ -10,6 +10,8 @@ nav {
 }
 
 nav > ul > li {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     padding: 5px;
     margin-right: 4px;
@@ -27,6 +29,10 @@ nav > ul > li {
         height: 0;
 
         background: var(--text);
+        
+        -webkit-transition: height .1s ease-in-out;
+        
+        -o-transition: height .1s ease-in-out;
         
         transition: height .1s ease-in-out;
     }

@@ -1,26 +1,26 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-import { Sun, Moon } from "lucide-react"
+import { Sun, Moon } from "lucide-react";
 
-import { StorageWrapper } from "../models/LocalStorage"
-import { switchTheme } from "../utils/switchTheme"
+import { StorageWrapper } from "../models/LocalStorage";
+import { switchTheme } from "../utils/switchTheme";
 
-import '../styles/components/switchThemeCheckbox.css'
+import '../styles/components/switchThemeCheckbox.css';
 
 function ThemeSwitchChekbox() {
-    const STORAGE = new StorageWrapper()
-    const key = 'theme'
+    const STORAGE = new StorageWrapper();
+    const key = 'theme';
 
     const [lightTheme ,setLightTheme] = useState(() => {
-            const theme = STORAGE.get(key)
-            return theme ? JSON.parse(theme) : false
+            const theme = STORAGE.get(key);
+            return theme ? JSON.parse(theme) : false;
         }
     )
 
     useEffect(() => {
         switchTheme(lightTheme);
-        STORAGE.set(key, lightTheme)
-    }, [lightTheme])
+        STORAGE.set(key, lightTheme);
+    }, [lightTheme]);
 
     
     return(

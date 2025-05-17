@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import '../styles/components/navigation.css'
+import '../styles/components/navigation.css';
 
 // Fce pro render listu navigaci
 function Navlist() {

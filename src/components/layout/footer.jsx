@@ -1,4 +1,4 @@
-import '../../styles/components/container.css'
+import '../../styles/components/container.css';
 
 // Fce pro render patičky 
 function Footer() {
